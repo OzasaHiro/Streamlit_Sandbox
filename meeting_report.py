@@ -35,7 +35,7 @@ def generate_meeting_reports(text, language, llm, project_name, deadline, budget
 
     if llm == 'Claude3':
         client = anthropic.Anthropic()
-        summary_result = client.messages.create(model=LLM, messages=[user_request], max_tokens=500)
+        summary_result = client.messages.create(model=LLM, messages={"role": "user", "content": user_request}, max_tokens=500)
         summary = summary_result.content[0].text
 
     else:
