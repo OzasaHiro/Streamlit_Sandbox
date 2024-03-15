@@ -32,11 +32,11 @@ def main():
         text = uploaded_file.read().decode("utf-8")
         if st.button("作成"):
             if report_type == '議事録':
-                summary = generate_meeting_minutes(text, language, llm, project_name, deadline, budget, customer_name, openai_api_key)
+                summary = generate_meeting_minutes(text, language, llm, project_name, deadline, budget, customer_name)
                 st.header("議事録")
                 st.write(summary)
             else:
-                summary = generate_meeting_reports(text, language, llm, project_name, deadline, budget, customer_name, openai_api_key)
+                summary = generate_meeting_reports(text, language, llm, project_name, deadline, budget, customer_name)
                 st.header("週報")
                 st.write(summary)
     elif uploaded_file is not None and not project_number:
