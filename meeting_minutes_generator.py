@@ -23,30 +23,12 @@ def generate_meeting_minutes(text, language, llm, project_name, deadline, budget
     Customer Name: {customer_name}\
     Meeting Transcription: {text}\
     Structure of the Meeting Minutes:\
-    1. Overview\
+    1. Overview (break line)\
     (1) ...\
     
     (2) ...\
     
-    2. Agenda and Discussion Points\
-    (1) ...\
-    
-    (a) ...\
-    
-    (b) ...\
-    
-    (2) ...\
-    
-    (a) ...\
-    
-    (b) ...\
-    
-    3. Issues and Concerns\
-    (1) ...\
-    
-    (2) ...\
-    
-    4. Action Items\
+    2. Agenda and Discussion Points (break line)\
     (1) ...\
     
     (a) ...\
@@ -59,7 +41,25 @@ def generate_meeting_minutes(text, language, llm, project_name, deadline, budget
     
     (b) ...\
     
-    5. Next Meeting\
+    3. Issues and Concerns (break line)\
+    (1) ...\
+    
+    (2) ...\
+    
+    4. Action Items (break line)\
+    (1) ...\
+    
+    (a) ...\
+    
+    (b) ...\
+    
+    (2) ...\
+    
+    (a) ...\
+    
+    (b) ...\
+    
+    5. Next Meeting (break line)\
     (1) ...\
     
     (2) ...\
