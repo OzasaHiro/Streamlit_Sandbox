@@ -3,6 +3,10 @@ import os
 from meeting_minutes_generator import generate_meeting_minutes
 from meeting_report import generate_meeting_reports
 
+os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+client = OpenAI()
+
+
 def main():
     st.title("議事録作成アプリ")
     uploaded_file = st.file_uploader("テキストファイルをアップロードしてください", type="txt")
@@ -26,7 +30,6 @@ def main():
     if uploaded_file is not None and project_number:
         text = uploaded_file.read().decode("utf-8")
         if st.button("作成"):
-            openai_api_key = st.secrets["OPENAI_API_KEY"]
             if report_type == '議事録':
                 summary = generate_meeting_minutes(text, language, llm, project_name, deadline, budget, customer_name, openai_api_key)
                 st.header("議事録")
