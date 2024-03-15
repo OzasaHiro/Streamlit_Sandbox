@@ -9,7 +9,7 @@ def generate_meeting_minutes(text, language, llm, project_name, deadline, budget
 
     if llm == "GPT4":
         LLM = 'gpt-4-0125-preview'
-    elif llm == "GPTGPT3.5":
+    elif llm == "GPT3.5":
         LLM = 'gpt-3.5-turbo-0125'
     else:
         LLM = 'claude-3-sonnet-20240229'
