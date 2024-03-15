@@ -2,8 +2,8 @@ import streamlit as st
 from openai import OpenAI
 import os
 
-os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
-client = OpenAI(os.environ["OPENAI_API_KEY"])
+OpenAI.set_api_key(st.secrets["OPENAI_API_KEY"])
+client = OpenAI()
 
 
 def generate_meeting_minutes(text, language, llm, project_name, deadline, budget, customer_name):
