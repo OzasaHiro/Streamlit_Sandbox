@@ -39,10 +39,10 @@ def generate_meeting_reports(text, language, llm, project_name, deadline, budget
         client = anthropic.Anthropic()
         summary_result = client.messages.create(
                     model=LLM,
-                    max_tokens=1000,
+                    max_tokens=500,
                     temperature=0.0,
                     system="あなたは優秀なAIアシスタントです。",
-                    messages={'role': 'user', 'content': prompt}
+                    messages=[{'role': 'user', 'content': prompt}]
                 )
         summary = summary_result.content[0].text
 
