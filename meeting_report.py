@@ -30,6 +30,6 @@ def generate_meeting_reports(text, language, llm, project_name, deadline, budget
     else:
         user_request = {'role': 'assistant', 'content': summary_prompt+"Write in English."}
 
-    summary_result = client.chat.completions.create(model=LLM, messages=[user_request], max_tokens=300)
+    summary_result = client.chat.completions.create(model=LLM, messages=[user_request], max_tokens=500)
     summary = summary_result.choices[0].message.content.strip()
     return summary
