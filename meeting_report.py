@@ -2,7 +2,7 @@ import streamlit as st
 from openai import OpenAI
 import os
 
-def generate_meeting_reports(text, language, llm, project_name, deadline, budget, customer_name, openai_api_key):
+def generate_meeting_reports(text, language, llm, project_name, deadline, budget, customer_name):
     os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
     client = OpenAI()
 
