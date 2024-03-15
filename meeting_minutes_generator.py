@@ -25,27 +25,45 @@ def generate_meeting_minutes(text, language, llm, project_name, deadline, budget
     Structure of the Meeting Minutes:\
     1. Overview\
     (1) ...\
+    
     (2) ...\
+    
     2. Agenda and Discussion Points\
     (1) ...\
+    
     (a) ...\
+    
     (b) ...\
+    
     (2) ...\
+    
     (a) ...\
+    
     (b) ...\
+    
     3. Issues and Concerns\
     (1) ...\
+    
     (2) ...\
+    
     4. Action Items\
     (1) ...\
+    
     (a) ...\
+    
     (b) ...\
+    
     (2) ...\
+    
     (a) ...\
+    
     (b) ...\
+    
     5. Next Meeting\
     (1) ...\
+    
     (2) ...\
+    
     When creating the meeting minutes, please keep the following points in mind:\
     - Ensure that the overall flow and conclusion of the meeting are clearly summarized.\
     - Mention the speaker for important statements or decisions made.\
