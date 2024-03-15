@@ -3,7 +3,7 @@ from openai import OpenAI
 import os
 
 os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
-client = OpenAI.OpenAI(os.environ["OPENAI_API_KEY"])
+client = OpenAI(os.environ["OPENAI_API_KEY"])
 
 
 def generate_meeting_minutes(text, language, llm, project_name, deadline, budget, customer_name):
