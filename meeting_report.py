@@ -42,7 +42,7 @@ def generate_meeting_reports(text, language, llm, project_name, deadline, budget
                     max_tokens=1000,
                     temperature=0.0,
                     system="あなたは優秀なAIアシスタントです。",
-                    messages=[user_request]
+                    messages={'role': 'user', 'content': prompt}
                 )
         summary = summary_result.content[0].text
 
