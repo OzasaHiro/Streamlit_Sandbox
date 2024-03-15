@@ -15,63 +15,37 @@ def generate_meeting_minutes(text, language, llm, project_name, deadline, budget
         LLM = 'claude-3-sonnet-20240229'
 
     summary_prompt = f"""
-    Please create a meeting minutes based on the following information:\
-    Project Information:\
-    Project Name: {project_name}\
-    Deadline: {deadline}\
-    Budget: {budget}\
-    Customer Name: {customer_name}\
-    Meeting Transcription: {text}\
-    Structure of the Meeting Minutes:\
-    1. Overview (break line)\
-    (1) ...\
-    
-    (2) ...\
-    
-    2. Agenda and Discussion Points (break line)\
-    (1) ...\
-    
-    (a) ...\
-    
-    (b) ...\
-    
-    (2) ...\
-    
-    (a) ...\
-    
-    (b) ...\
-    
-    3. Issues and Concerns (break line)\
-    (1) ...\
-    
-    (2) ...\
-    
-    4. Action Items (break line)\
-    (1) ...\
-    
-    (a) ...\
-    
-    (b) ...\
-    
-    (2) ...\
-    
-    (a) ...\
-    
-    (b) ...\
-    
-    5. Next Meeting (break line)\
-    (1) ...\
-    
-    (2) ...\
-    
-    When creating the meeting minutes, please keep the following points in mind:\
-    - Ensure that the overall flow and conclusion of the meeting are clearly summarized.\
-    - Mention the speaker for important statements or decisions made.\
-    - Keep the language concise and accurate, avoiding ambiguous expressions.\
-    - Enrich the content of the meeting minutes by relating the project information to the meeting content.\
-    Be sure to break line when going to the next item.\
-    Please proceed with creating the meeting minutes.\
-    """
+        Please create a meeting minutes based on the following information:\
+        Project Information:\
+        Project Name: {project_name}\
+        Deadline: {deadline}\
+        Budget: {budget}\
+        Customer Name: {customer_name}\
+        Meeting Transcription: {text}\
+        Structure of the Meeting Minutes:\
+        1. Overview\
+        - Summarize the purpose, date, location, and attendees of the meeting concisely.\
+        - Organize and include the project information (project name, deadline, budget, customer name).\
+        2. Agenda and Discussion Points\
+        - List the main agenda items discussed during the meeting in bullet points.\
+        - Summarize the content of the discussion for each agenda item.\
+        - Clearly state any important decisions or agreements made.\
+        3. Issues and Concerns\
+        - Organize and document the issues and concerns raised during the meeting.\
+        - If there are any issues related to the project's deadline or budget, mention them specifically.\
+        4. Action Items\
+        - List the action items decided upon during the meeting.\
+        - For each action item, specify the person responsible and the deadline.\
+        5. Next Meeting\
+        - Note the date, location, and agenda for the next meeting.\
+        When creating the meeting minutes, please keep the following points in mind:\
+        - Ensure that the overall flow and conclusion of the meeting are clearly summarized.\
+        - Mention the speaker for important statements or decisions made.\
+        - Keep the language concise and accurate, avoiding ambiguous expressions.\
+        - Enrich the content of the meeting minutes by relating the project information to the meeting content.\
+        The items should be grouped by level with the major items being 11.,2.,3.,... The middle items are (1),(2),(3),... Sub-items are a., b., c.,...\
+        Please proceed with creating the meeting minutes.\
+        """
 
     if language == "日本語":
         prompt = summary_prompt+"日本語で記入してください。"
