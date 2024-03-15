@@ -47,13 +47,21 @@ def generate_meeting_minutes(text, language, llm, project_name, deadline, budget
         """
 
     if language == "日本語":
-        user_request = {'role': 'assistant', 'content': summary_prompt+"日本語で記入してください。"}
+        prompt = summary_prompt+"日本語で記入してください。"
+        user_request = {'role': 'assistant', 'content': prompt}
     else:
-        user_request = {'role': 'assistant', 'content': summary_prompt+"Write in English."}
+        prompt = summary_prompt+"Write in English."
+        user_request = {'role': 'assistant', 'content': prompt}
 
     if llm == 'Claude3':
         client = anthropic.Anthropic()
-        summary_result = client.messages.create(model=LLM, messages={"role": "user", "content": user_request}, max_tokens=1000)
+        summary_result = client.messages.create(
+                    model=LLM,
+                    max_tokens=1000,
+                    temperature=0.0,
+                    system="あなたは優秀なAIアシスタントです。",
+                    messages=[{'role': 'user', 'content': prompt}]
+                )
         summary = summary_result.content[0].text
 
     else:
