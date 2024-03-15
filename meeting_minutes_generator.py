@@ -69,6 +69,7 @@ def generate_meeting_minutes(text, language, llm, project_name, deadline, budget
     - Mention the speaker for important statements or decisions made.\
     - Keep the language concise and accurate, avoiding ambiguous expressions.\
     - Enrich the content of the meeting minutes by relating the project information to the meeting content.\
+    Be sure to break line when going to the next item.\
     Please proceed with creating the meeting minutes.\
     """
 
