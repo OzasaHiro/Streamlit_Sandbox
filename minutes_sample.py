@@ -1,11 +1,8 @@
 import streamlit as st
 import os
-from openai import OpenAI
 from meeting_minutes_generator import generate_meeting_minutes
 from meeting_report import generate_meeting_reports
-
-os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
-client = OpenAI()
+from openai import OpenAI
 
 
 def main():
