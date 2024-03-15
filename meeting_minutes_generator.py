@@ -15,7 +15,7 @@ def generate_meeting_minutes(text, language, llm, project_name, deadline, budget
         LLM = 'claude-3-sonnet-20240229'
 
     summary_prompt = f"""
-        Please create a meeting minutes based on the following information:\
+        Please create meeting minutes based on the following information:\
         Project Information:\
         Project Name: {project_name}\
         Deadline: {deadline}\
@@ -24,12 +24,17 @@ def generate_meeting_minutes(text, language, llm, project_name, deadline, budget
         Meeting Transcription: {text}\
         Structure of the Meeting Minutes:\
         1. Overview\
-        - Summarize the purpose, date, location, and attendees of the meeting concisely.\
-        - Organize and include the project information (project name, deadline, budget, customer name).\
+        (1) Project Name\
+        (2) Date and Location\
+        - Summarize the purpose and attendees of the meeting concisely.\
         2. Agenda and Discussion Points\
-        - List the main agenda items discussed during the meeting in bullet points.\
-        - Summarize the content of the discussion for each agenda item.\
-        - Clearly state any important decisions or agreements made.\
+        (1) Agenda Item 1\
+        a) Summary of Discussion\
+        b) Decisions or Agreements Made\
+        (2) Agenda Item 2\
+        a) Summary of Discussion\
+        b) Decisions or Agreements Made\
+        ... (continue for each agenda item)\
         3. Issues and Concerns\
         - Organize and document the issues and concerns raised during the meeting.\
         - If there are any issues related to the project's deadline or budget, mention them specifically.\
