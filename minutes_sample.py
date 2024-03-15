@@ -2,7 +2,7 @@ import streamlit as st
 from openai import OpenAI
 import os
 
-OpenAI.set_api_key(st.secrets["OPENAI_API_KEY"])
+os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 client = OpenAI()
 
 
