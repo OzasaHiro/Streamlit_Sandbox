@@ -10,7 +10,7 @@ def main():
     uploaded_file = st.file_uploader("テキストファイルをアップロードしてください", type="txt")
     st.sidebar.title("設定")
     language = st.sidebar.selectbox("言語を選択してください", ("日本語", "English"))
-    llm = st.sidebar.selectbox("LLMを選択してください", ("GPT4", "GPT3.5"))
+    llm = st.sidebar.selectbox("LLMを選択してください", ("GPT4", "GPT3.5", "Claude3"))
     project_number = st.sidebar.selectbox("工事番号を選択してください", ("123A1234", "456B4321"))
     report_type = st.sidebar.selectbox("書き方を選択してください", ("週報", "議事録"))
 
