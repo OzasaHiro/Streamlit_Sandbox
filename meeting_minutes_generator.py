@@ -12,7 +12,7 @@ def generate_meeting_minutes(text, language, llm, project_name, deadline, budget
     elif llm == "GPT3.5":
         LLM = 'gpt-3.5-turbo-0125'
     else:
-        LLM = 'claude-3-sonnet-20240229'
+        LLM = 'claude-3-opus-20240229' #'claude-3-sonnet-20240229'
 
     summary_prompt = f"""
         Please create a meeting minutes based on the following information:\
