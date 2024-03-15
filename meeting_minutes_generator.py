@@ -5,7 +5,7 @@ import os
 
 def generate_meeting_minutes(text, language, llm, project_name, deadline, budget, customer_name):
     os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
-    os.environ["ANTHROPIC_API_KEY"] = st.secrets("ANTHROPIC_API_KEY")
+    os.environ["ANTHROPIC_API_KEY"] = st.secrets["ANTHROPIC_API_KEY"]
 
     if llm == "GPT4":
         LLM = 'gpt-4-0125-preview'
