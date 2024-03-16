@@ -48,7 +48,7 @@ def generate_meeting_reports(text, language, llm, project_name, deadline, budget
                 )
         summary = summary_result.content[0].text
 
-    if llm == 'Gemma-7B':
+    elif llm == 'Gemma-7B':
         summary_result = replicate.run(
                     "google-deepmind/gemma-7b-it:2790a695e5dcae15506138cc4718d1106d0d475e6dca4b1d43f42414647993d5",
                     input={
