@@ -56,7 +56,7 @@ def generate_meeting_reports(text, language, llm, project_name, deadline, budget
                         "top_p": 0.95,
                         "prompt": prompt,
                         "temperature": 0.01,
-                        "max_new_tokens":1000,
+                        "max_new_tokens":500,
                         "min_new_tokens": 100,
                         "repetition_penalty": 1
                     }
