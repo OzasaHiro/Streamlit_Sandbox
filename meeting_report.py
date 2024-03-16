@@ -29,12 +29,29 @@ def generate_meeting_reports(text, language, llm, project_name, deadline, budget
         Customer Name: {customer_name}
         Meeting Transcription: {text}
         """
+    summary_prompt_j = f"""
+        以下のプロジェクト情報と会議の文字起こしに基づいて、簡潔な議事録を作成してください。\
+        プロジェクトの概要を簡単に説明した後、会議の重要なポイント、課題、アクションアイテムを1つの構造化された段落にまとめてください。 \       
+        対象読者はプロジェクトに関する幅広い知識を持っていない可能性があるため、内容がわかりやすく理解しやすいことを確認してください。\
+        
+        プロジェクト情報:
+        プロジェクト名: {project_name}
+        締め切り: {deadline}
+        予算: {budget}
+        顧客名: {customer_name}
+        
+        会議の文字起こし: {text}
+        """
 
+
+    
     if language == "日本語":
         prompt = summary_prompt+"日本語で記入してください。"
+        prompt_gemma = summary_prompt_j
         user_request = {'role': 'assistant', 'content': prompt}
     else:
         prompt = summary_prompt+"Write in English."
+        prompt_gemma = summary_prompt
         user_request = {'role': 'assistant', 'content': prompt}
 
     if llm == 'Claude3':
@@ -54,7 +71,7 @@ def generate_meeting_reports(text, language, llm, project_name, deadline, budget
                     input={
                         "top_k": 50,
                         "top_p": 0.95,
-                        "prompt": prompt,
+                        "prompt": prompt_gemma,
                         "temperature": 0.01,
                         "max_new_tokens":500,
                         "min_new_tokens": 100,
