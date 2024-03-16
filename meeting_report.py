@@ -13,7 +13,7 @@ def generate_meeting_reports(text, language, llm, project_name, deadline, budget
         LLM = 'gpt-4-0125-preview'
     elif llm == "GPTGPT3.5":
         LLM = 'gpt-3.5-turbo-0125'
-    else:
+    elif llm == 'Claude3':
         LLM = 'claude-3-sonnet-20240229'
 
     summary_prompt = f"""
