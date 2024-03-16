@@ -31,9 +31,11 @@ def generate_meeting_reports(text, language, llm, project_name, deadline, budget
         """
 
     if language == "日本語":
-        user_request = {'role': 'assistant', 'content': summary_prompt+"日本語で記入してください。"}
+        prompt = summary_prompt+"日本語で記入してください。"
+        user_request = {'role': 'assistant', 'content': prompt}
     else:
-        user_request = {'role': 'assistant', 'content': summary_prompt+"Write in English."}
+        prompt = summary_prompt+"Write in English."
+        user_request = {'role': 'assistant', 'content': prompt}
 
     if llm == 'Claude3':
         client = anthropic.Anthropic()
@@ -42,7 +44,7 @@ def generate_meeting_reports(text, language, llm, project_name, deadline, budget
                     max_tokens=500,
                     temperature=0.0,
                     system="あなたは優秀なAIアシスタントです。",
-                    messages=[user_request]
+                    messages=[{'role': 'user', 'content': prompt}]
                 )
         summary = summary_result.content[0].text
 
@@ -52,10 +54,10 @@ def generate_meeting_reports(text, language, llm, project_name, deadline, budget
                     input={
                         "top_k": 50,
                         "top_p": 0.95,
-                        "prompt": summary_prompt+"日本語で記入してください。",
+                        "prompt": prompt,
                         "temperature": 0.01,
-                        "max_new_tokens": 500,
-                        "min_new_tokens": -1,
+                        "max_new_tokens":1000,
+                        "min_new_tokens": 100,
                         "repetition_penalty": 1
                     }
                 )
