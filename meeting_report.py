@@ -52,8 +52,8 @@ def generate_meeting_reports(text, language, llm, project_name, deadline, budget
                     input={
                         "top_k": 50,
                         "top_p": 0.95,
-                        "prompt": [user_request],
-                        "temperature": 0.0,
+                        "prompt": summary_prompt+"日本語で記入してください。",
+                        "temperature": 0.01,
                         "max_new_tokens": 500,
                         "min_new_tokens": -1,
                         "repetition_penalty": 1
