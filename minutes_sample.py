@@ -10,18 +10,17 @@ os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
 def main():
     st.title("議事録作成アプリ")
-
-    uploaded_file = st.file_uploader("音声またはテキストファイルをアップロードしてください", type=["wav", "mp3", "m4a", "txt"])
+    uploaded_file = st.file_uploader("音声またはテキストファイルをアップロードしてください", type=["mp3", "txt"])
 
     st.sidebar.title("設定")
     language = st.sidebar.selectbox("言語を選択してください", ("日本語", "English"))
     llm = st.sidebar.selectbox("LLMを選択してください", ("GPT4", "GPT3.5", "Claude3", "Gemma-7B"))
-    project_number = st.sidebar.selectbox("工事番号を選択してください", ("-", "123A1234", "456B4321"))
     report_type = st.sidebar.selectbox("書き方を選択してください", ("週報", "議事録"))
 
     today = datetime.today().date()
     date = st.sidebar.date_input("日付を入力してください", value=today)
-
+    
+    project_number = st.sidebar.selectbox("工事番号を選択してください", ("-", "123A1234", "456B4321"))
 
     if project_number == '-':
         project_name = '-'
