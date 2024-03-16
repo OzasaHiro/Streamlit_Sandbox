@@ -4,7 +4,7 @@ import anthropic
 import replicate
 import os
 
-def generate_meeting_reports(text, language, llm, project_name, deadline, budget, customer_name):
+def generate_meeting_reports(text, language, llm, project_name, deadline, budget, customer_name, date):
     os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
     os.environ["ANTHROPIC_API_KEY"] = st.secrets["ANTHROPIC_API_KEY"]
     REPLICATE_API_TOKEN=st.secrets["REPLICATE_API_TOKEN"]
@@ -27,6 +27,7 @@ def generate_meeting_reports(text, language, llm, project_name, deadline, budget
         Deadline: {deadline}
         Budget: {budget}
         Customer Name: {customer_name}
+        Date: {date}
         Meeting Transcription: {text}
         """
     summary_prompt_j = f"""
@@ -39,7 +40,7 @@ def generate_meeting_reports(text, language, llm, project_name, deadline, budget
         締め切り: {deadline}
         予算: {budget}
         顧客名: {customer_name}
-        
+        日付: {date}
         会議の文字起こし: {text}
         """
 
