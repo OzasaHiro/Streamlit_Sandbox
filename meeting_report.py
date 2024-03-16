@@ -75,8 +75,8 @@ def generate_meeting_reports(text, language, llm, project_name, deadline, budget
                         "prompt": prompt_gemma,
                         "temperature": 0.01,
                         "max_new_tokens":500,
-                        "min_new_tokens": 100,
-                        "repetition_penalty": 1,
+                        #"min_new_tokens": 100,
+                        #"repetition_penalty": 1,
                         "prompt_template": "<s>[INST] {prompt} [/INST]"
                     }
                 )
