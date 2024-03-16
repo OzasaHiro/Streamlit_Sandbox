@@ -63,7 +63,7 @@ def main():
                                 file=audio_file,
                                 response_format = 'text'
                                 )
-                text = transcription.text
+                text = transcription
             except Exception as e:
                 st.error(f"音声ファイルの変換中にエラーが発生しました: {e}")
                 return
