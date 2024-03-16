@@ -71,11 +71,11 @@ def main():
 
         if st.button("作成"):
             if report_type == '議事録':
-                summary = generate_meeting_minutes(text, language, llm, project_name, deadline, budget, customer_name)
+                summary = generate_meeting_minutes(text, language, llm, project_name, deadline, budget, customer_name, date)
                 st.header("議事録")
                 st.write(summary)
             else:
-                summary = generate_meeting_reports(text, language, llm, project_name, deadline, budget, customer_name)
+                summary = generate_meeting_reports(text, language, llm, project_name, deadline, budget, customer_name, date)
                 st.header("週報")
                 st.write(summary)
 
