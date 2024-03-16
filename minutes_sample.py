@@ -52,7 +52,7 @@ def main():
             try:
                 client = OpenAI()
 
-                audio_file= open(uploaded_file.name, "rb")
+                audio_file = uploaded_file.getvalue()
                 transcription = client.audio.transcriptions.create(
                                 model="whisper-1", 
                                 file=audio_file,
@@ -62,6 +62,7 @@ def main():
             except Exception as e:
                 st.error(f"音声ファイルの変換中にエラーが発生しました: {e}")
                 return
+
 
         if st.button("作成"):
             if report_type == '議事録':
