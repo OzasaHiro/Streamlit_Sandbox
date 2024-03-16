@@ -4,7 +4,7 @@ from meeting_minutes_generator import generate_meeting_minutes
 from meeting_report import generate_meeting_reports
 from openai import OpenAI
 from datetime import datetime
-
+import tempfile
 
 os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
