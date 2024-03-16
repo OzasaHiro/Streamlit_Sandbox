@@ -61,7 +61,7 @@ def generate_meeting_reports(text, language, llm, project_name, deadline, budget
                         "repetition_penalty": 1
                     }
                 )
-        for item in output:
+        for item in summary_result:
             # https://replicate.com/google-deepmind/gemma-7b-it/api#output-schema
             st.write(item, end="")
         summary = next(summary_result)
