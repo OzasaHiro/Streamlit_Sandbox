@@ -67,7 +67,8 @@ def generate_meeting_reports(text, language, llm, project_name, deadline, budget
 
     elif llm == 'Gemma-7B':
         summary_result = replicate.run(
-                    "google-deepmind/gemma-7b-it:2790a695e5dcae15506138cc4718d1106d0d475e6dca4b1d43f42414647993d5",
+                    ＃"google-deepmind/gemma-7b-it:2790a695e5dcae15506138cc4718d1106d0d475e6dca4b1d43f42414647993d5",
+                    "mistralai/mixtral-8x7b-instruct-v0.1:cf18decbf51c27fed6bbdc3492312c1c903222a56e3fe9ca02d6cbe5198afc10",
                     input={
                         "top_k": 50,
                         "top_p": 0.95,
