@@ -1,15 +1,17 @@
 import streamlit as st
 from openai import OpenAI
 import anthropic
+import replicate
 import os
 
 def generate_meeting_reports(text, language, llm, project_name, deadline, budget, customer_name):
     os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
     os.environ["ANTHROPIC_API_KEY"] = st.secrets["ANTHROPIC_API_KEY"]
+    REPLICATE_API_TOKEN=st.secrets["REPLICATE_API_TOKEN"]
 
     if llm == "GPT4":
         LLM = 'gpt-4-0125-preview'
-    elif llm == "GPT3.5":
+    elif llm == "GPTGPT3.5":
         LLM = 'gpt-3.5-turbo-0125'
     else:
         LLM = 'claude-3-sonnet-20240229'
@@ -29,11 +31,9 @@ def generate_meeting_reports(text, language, llm, project_name, deadline, budget
         """
 
     if language == "日本語":
-        prompt = summary_prompt+"日本語で記入してください。"
-        user_request = {'role': 'assistant', 'content': prompt}
+        user_request = {'role': 'assistant', 'content': summary_prompt+"日本語で記入してください。"}
     else:
-        prompt = summary_prompt+"Write in English."
-        user_request = {'role': 'assistant', 'content': prompt}
+        user_request = {'role': 'assistant', 'content': summary_prompt+"Write in English."}
 
     if llm == 'Claude3':
         client = anthropic.Anthropic()
@@ -42,9 +42,25 @@ def generate_meeting_reports(text, language, llm, project_name, deadline, budget
                     max_tokens=500,
                     temperature=0.0,
                     system="あなたは優秀なAIアシスタントです。",
-                    messages=[{'role': 'user', 'content': prompt}]
+                    messages=[user_request]
                 )
         summary = summary_result.content[0].text
+
+    if llm == 'Gemma-7B':
+        summary_result = replicate.run(
+                    "google-deepmind/gemma-7b-it:2790a695e5dcae15506138cc4718d1106d0d475e6dca4b1d43f42414647993d5",
+                    input={
+                        "top_k": 50,
+                        "top_p": 0.95,
+                        "prompt": [user_request],
+                        "temperature": 0.0,
+                        "max_new_tokens": 500,
+                        "min_new_tokens": -1,
+                        "repetition_penalty": 1
+                    }
+                )
+        
+        summary = summary_result[0]
 
     else:
         client = OpenAI()
