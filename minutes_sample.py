@@ -23,7 +23,7 @@ def main():
     date = st.sidebar.date_input("日付を入力してください", value=today)
 
 
-    if project_name == '-':
+    if project_number == '-':
         project_name = '-'
         deadline = '-'
         budget = '-'
