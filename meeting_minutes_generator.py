@@ -47,12 +47,51 @@ def generate_meeting_minutes(text, language, llm, project_name, deadline, budget
         - Enrich the content of the meeting minutes by relating the project information to the meeting content.\
         Please proceed with creating the meeting minutes.\
         """
+    summary_prompt_j = f"""
+        以下の情報に基づいて、会議の議事録を作成してください。\
+        
+        プロジェクト情報:\
+        プロジェクト名: {project_name}\
+        締め切り: {deadline}\
+        予算: {budget}\
+        顧客名: {customer_name} \
+        会議の文字起こし: {text}\
+        
+        議事録の構成:\
+        
+        1. 概要\
+        - 会議の目的、日時、場所、出席者を簡潔にまとめてください。\
+        - プロジェクト情報（プロジェクト名、締め切り、予算、顧客名）を整理して含めてください。\
+        2. 議題と討議内容\
+        - 会議で討議された主な議題を箇条書きで列挙してください。\
+        - 各議題の討議内容を要約してください。\
+        - 重要な決定事項や合意事項は明確に記載してください。\
+        3. 課題と懸念事項\
+        - 会議で提起された課題や懸念事項を整理して文書化してください。\
+        - プロジェクトの締め切りや予算に関する課題があれば、具体的に言及してください。\
+        4. アクションアイテム\
+        - 会議で決定されたアクションアイテムを列挙してください。\
+        - 各アクションアイテムについて、担当者と期限を明記してください。\
+        5. 次回会議\
+        - 次回会議の日時、場所、議題を記載してください。\
+        
+        議事録を作成する際は、以下の点に留意してください:\
+        - 会議の全体的な流れと結論が明確にまとめられていること。\
+        - 重要な発言や決定事項については、発言者を記載すること。\
+        - 言葉を簡潔かつ正確に使い、あいまいな表現を避けること。\
+        - プロジェクト情報と会議内容を関連付けて、議事録の内容を充実させること。\
+        それでは、議事録の作成を進めてください。\
+        """
 
+
+    
     if language == "日本語":
         prompt = summary_prompt+"日本語で記入してください。"
+        prompt_gemma = summary_prompt_j
         user_request = {'role': 'assistant', 'content': prompt}
     else:
         prompt = summary_prompt+"Write in English."
+        prompt_gemma = summary_prompt
         user_request = {'role': 'assistant', 'content': prompt}
 
     if llm == 'Claude3':
@@ -72,7 +111,7 @@ def generate_meeting_minutes(text, language, llm, project_name, deadline, budget
                     input={
                         "top_k": 50,
                         "top_p": 0.95,
-                        "prompt": prompt,
+                        "prompt": prompt_gemma,
                         "temperature": 0.01,
                         "max_new_tokens":1000,
                         "min_new_tokens": 10,
