@@ -60,7 +60,7 @@ def generate_meeting_reports(text, language, llm, project_name, deadline, budget
                     }
                 )
         
-        summary = summary_result[0]
+        summary = next(summary_result)
 
     else:
         client = OpenAI()
