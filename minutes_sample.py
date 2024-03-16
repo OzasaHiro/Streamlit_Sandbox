@@ -52,7 +52,12 @@ def main():
             try:
                 client = OpenAI()
 
-                audio_file = uploaded_file.getvalue()
+                # Create a temporary file
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as temp:
+                    temp.write(uploaded_file.getvalue())
+                    temp_file_name = temp.name
+
+                audio_file = open(temp_file_name, "rb")
                 transcription = client.audio.transcriptions.create(
                                 model="whisper-1", 
                                 file=audio_file,
