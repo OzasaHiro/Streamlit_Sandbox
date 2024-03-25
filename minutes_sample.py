@@ -2,6 +2,7 @@ import streamlit as st
 import os
 from meeting_minutes_generator import generate_meeting_minutes
 from meeting_report import generate_meeting_reports
+from event_report import generate_event_reports
 from openai import OpenAI
 from datetime import datetime
 import tempfile
