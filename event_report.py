@@ -4,7 +4,7 @@ import anthropic
 import replicate
 import os
 
-def generate_meeting_reports(text, language, llm, project_name, deadline, budget, customer_name, date):
+def generate_event_reports(text, language, llm, project_name, deadline, budget, customer_name, date):
     os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
     os.environ["ANTHROPIC_API_KEY"] = st.secrets["ANTHROPIC_API_KEY"]
     REPLICATE_API_TOKEN=st.secrets["REPLICATE_API_TOKEN"]
