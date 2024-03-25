@@ -15,7 +15,7 @@ def main():
     st.sidebar.title("設定")
     language = st.sidebar.selectbox("言語を選択してください", ("日本語", "English"))
     llm = st.sidebar.selectbox("LLMを選択してください", ("GPT4", "GPT3.5", "Claude3", "Gemma-7B"))
-    report_type = st.sidebar.selectbox("書き方を選択してください", ("週報", "議事録"))
+    report_type = st.sidebar.selectbox("書き方を選択してください", ("週報", "議事録", "出張レポート"))
 
     today = datetime.today().date()
     date = st.sidebar.date_input("日付を入力してください", value=today)
@@ -73,9 +73,13 @@ def main():
                 summary = generate_meeting_minutes(text, language, llm, project_name, deadline, budget, customer_name, date)
                 st.header("議事録")
                 st.write(summary)
-            else:
+            elif report_type == '週報':
                 summary = generate_meeting_reports(text, language, llm, project_name, deadline, budget, customer_name, date)
                 st.header("週報")
+                st.write(summary)
+            else:
+                summary = generate_event_reports(text, language, llm, project_name, deadline, budget, customer_name, date)
+                st.header("出張レポート")
                 st.write(summary)
 
     elif uploaded_file is not None and not project_number:
