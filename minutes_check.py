@@ -20,6 +20,8 @@ def minutes_check(text):
         Do not include any text other than the number in your response.\
 
         """
+    user_request = {'role': 'assistant', 'content': summary_prompt}
+    
     client = OpenAI()
     summary_result = client.chat.completions.create(model=LLM, messages=[user_request], max_tokens=1000)
     summary = summary_result.choices[0].message.content.strip()
