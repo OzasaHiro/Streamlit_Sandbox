@@ -72,7 +72,7 @@ def main():
 
         if st.button("作成"):
             minutes_checking = minutes_check(text)
-            st.write(minutes_checking )
+            #st.write(minutes_checking )
 
             if minutes_checking == "0":
                 st.write("これはビジネス資料ではありません。")
