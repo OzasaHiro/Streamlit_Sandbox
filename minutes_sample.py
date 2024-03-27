@@ -3,6 +3,7 @@ import os
 from meeting_minutes_generator import generate_meeting_minutes
 from meeting_report import generate_meeting_reports
 from event_report import generate_event_reports
+from minutes_check import minutes_check
 from openai import OpenAI
 from datetime import datetime
 import tempfile
@@ -70,18 +71,25 @@ def main():
 
 
         if st.button("作成"):
-            if report_type == '議事録':
-                summary = generate_meeting_minutes(text, language, llm, project_name, deadline, budget, customer_name, date)
-                st.header("議事録")
-                st.write(summary)
-            elif report_type == '週報':
-                summary = generate_meeting_reports(text, language, llm, project_name, deadline, budget, customer_name, date)
-                st.header("週報")
-                st.write(summary)
+            minutes_checking = minutes_check(text)
+            st.write(minutes_checking )
+
+            if minutes_checking == "0":
+                st.write("これはビジネス資料ではありません。")
+
             else:
-                summary = generate_event_reports(text, language, llm, project_name, deadline, budget, customer_name, date)
-                st.header("出張レポート")
-                st.write(summary)
+                if report_type == '議事録':
+                    summary = generate_meeting_minutes(text, language, llm, project_name, deadline, budget, customer_name, date)
+                    st.header("議事録")
+                    st.write(summary)
+                elif report_type == '週報':
+                    summary = generate_meeting_reports(text, language, llm, project_name, deadline, budget, customer_name, date)
+                    st.header("週報")
+                    st.write(summary)
+                else:
+                    summary = generate_event_reports(text, language, llm, project_name, deadline, budget, customer_name, date)
+                    st.header("出張レポート")
+                    st.write(summary)
 
     elif uploaded_file is not None and not project_number:
         st.sidebar.warning("工事番号が記入されていません。")
